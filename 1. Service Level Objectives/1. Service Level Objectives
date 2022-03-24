@@ -1,0 +1,46 @@
+# 1 Service Level Objectives
+
+## 1.0 Understanding the System
+Before we go into defining our SLIs, SLOs, and SLAs we want to have a high-level understanding of the system that we want to monitor. Start with a 'skeleton' and we can iterate from there.
+
+### 1.0.0 Home Loans System
+I shall begin with a high-level understanding of the systems used by our customers, Home Loan Specialists, and Credit Assessors.
+
+<br />
+    <p align=center>
+        <img src="https://user-images.githubusercontent.com/78294946/159916913-b2ebfda5-e7ac-4b36-9b27-794835993b3d.png" />
+    </p>
+<br />
+
+Based on this high-level architecture we can now attempt to draft the Indicators.
+
+## 1.1 Service Level Indicators
+Given the above setup, we can start thinking about how user interact with the system, and what sort of Indicators would measure the various aspects of a user's experience. It is important to remember we want indicators of user's happiness and satisfaction towards the system they interact with; as opposed to a techie's outer-worldly urge and expectations.
+
+### 1.1.0 SLI Specification
+Here are some good stuff to start with:
+
+#### 1.1.0.0 T3
+| No | Type of SLI | Description |
+| --- | --- | --- |
+| 1 | Request latency | How long it takes to return a response to a request |
+| 2 | Error rate | Failed requests |
+| 3 | Availability/Yield | Well-formed requests that succeed |
+
+#### 1.1.0.1 DE (Inteflow)
+| No | Type of SLI | Description |
+| --- | --- | --- |
+| 1 | Request latency | How long it takes to return a response to a request |
+| 2 | Error rate | Failed requests |
+| 3 | Availability/Yield | Well-formed requests that succeed |
+| 4 | System throughput | Capacity to handle requests |
+| 5 | Data Durability | Likelihood that data will be retained over a long period of time |
+
+### 1.1.1 SLI Implementation
+Let's start with that something that requires the minimum engineering work, something that we already have.
+
+#### 1.1.1.0 Application Server Logs
+Our application server logs should capture sufficient information for us to measure. For availability and error rate, we need success/failure status; for request latency, we need time taken to serve the requests.
+
+#### 1.1.1.1 Load Balancer Monitoring
+Next step we should strive to move towards load balancer monitoring as it can provide indicators closer to user's experience. In addition to those measurable by application server logs, we can now measure system throughput by collecting metrics on requests handling.
